@@ -1,0 +1,17 @@
+<!--
+-->
+<launch>
+    <!-- Launch 3 nodes as below
+    At development stage, each node should be launched in a separated terminal to view the output -->
+
+    <include file="$(find zed_wrapper)/launch/zedm.launch"/>
+
+
+    <include file="$(find mavros)/launch/px4.launch">
+	<arg name="fcu_url" default="/dev/ttyACM0:57600"/>
+    </include>
+
+    <!-- This node will launch the node that bridges realsense-ros and MAVROS -->
+    <include file="$(find zed_to_mavros)/launch/zed_tf_to_mavros.launch"/>
+
+</launch>
